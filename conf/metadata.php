@@ -6,5 +6,6 @@
  */
 
 
-//$meta['fixme'] = array('string');
+$meta['nstemplate'] = array('string');
+$meta['inheritednstemplate'] = array('string');
 

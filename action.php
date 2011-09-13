@@ -22,23 +22,25 @@ class action_plugin_nstemplate extends DokuWiki_Action_Plugin {
     }
 
     public function handle_common_pagetpl_load(Doku_Event &$event, $param) {
+        global $conf;
         $id = $event->data['id'];
 
         $path = dirname(wikiFN($id));
         $tpl = '';
-        if(@file_exists($path.'/'.$this->getConf['nstemplate'].'.txt')){
-            $event->data['tplfile'] = $path.'/'.$this->getConf['nstemplate'].'.txt';
+        if(@file_exists($path.'/'.$this->getConf('nstemplate').'.txt')){
+            $event->data['tplfile'] = $path.'/'.$this->getConf('nstemplate').'.txt';
         }else{
             // search upper namespaces for templates
             $len = strlen(rtrim($conf['datadir'],'/'));
             while (strlen($path) >= $len){
-                if(@file_exists($path.'/'.$this->getConf['inheritednstemplate'].'.txt')){
-                    $event->data['tplfile'] = $path.'/'.$this->getConf['inheritednstemplate'].'.txt';
+                if(@file_exists($path.'/'.$this->getConf('inheritednstemplate').'.txt')){
+                    $event->data['tplfile'] = $path.'/'.$this->getConf('inheritednstemplate').'.txt';
                     break;
                 }
                 $path = substr($path, 0, strrpos($path, '/'));
             }
         }
+        return true;
     }
 
 }

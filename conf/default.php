@@ -5,4 +5,5 @@
  * @author Andreas Gohr <gohr@cosmocode.de>
  */
 
-//$conf['fixme']    = 'FIXME';
+$conf['nstemplate']    = '_template';
+$conf['inheritednstemplate']    = '__template';
